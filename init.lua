@@ -2,7 +2,10 @@ vim.cmd("set expandtab")
 vim.cmd("set tabstop=2")
 vim.cmd("set softtabstop=2") 
 vim.cmd("set shiftwidth=2")
+vim.g.mapleader = " "
+vim.cmd.colorscheme "brogrammer"
 
+-- Lazy
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   vim.fn.system({
@@ -17,6 +20,17 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 local opts = {}
-local plugins = {}
+local plugins = {
+  { "nvim-telescope/telescope.nvim", tag = "0.1.8", 
+    dependencies = { "nvim-lua/plenary.nvim" }  
+  }
+}
 require("lazy").setup(plugins, opts)
-vim.cmd.colorscheme "brogrammer"
+
+
+-- Telescope
+local builtin = require("telescope.builtin")
+vim.keymap.set('n', '<leader>b', builtin.find_files, {})
+-- Make sure that ripgrep is installed!
+-- https://github.com/BurntSushi/ripgrep
+vim.keymap.set('n', '<leader>g', builtin.live_grep, {})
