@@ -19,3 +19,4 @@ vim.opt.rtp:prepend(lazypath)
 local opts = {}
 local plugins = {}
 require("lazy").setup(plugins, opts)
+vim.cmd.colorscheme "brogrammer"
