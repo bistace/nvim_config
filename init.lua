@@ -23,7 +23,8 @@ local opts = {}
 local plugins = {
   { "nvim-telescope/telescope.nvim", tag = "0.1.8", 
     dependencies = { "nvim-lua/plenary.nvim" }  
-  }
+  },
+  { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" }
 }
 require("lazy").setup(plugins, opts)
 
@@ -34,3 +35,12 @@ vim.keymap.set('n', '<leader>b', builtin.find_files, {})
 -- Make sure that ripgrep is installed!
 -- https://github.com/BurntSushi/ripgrep
 vim.keymap.set('n', '<leader>g', builtin.live_grep, {})
+
+
+-- TreeSitter
+local config = require("nvim-treesitter.configs")
+config.setup({
+  ensure_installed = { "lua", "bash", "rust", "python", "ada" },
+  highlight = { enable = true },
+  indent = { enable = true },
+})
