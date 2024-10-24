@@ -15,8 +15,10 @@ return {
       })
     end
   },
+  -- Ada
   "TamaMcGlinn/nvim-lsp-gpr-selector",
   "TamaMcGlinn/nvim-lspconfig-ada",
+  -- Global LSP config
   {
     "neovim/nvim-lspconfig",
     config = function()
