@@ -18,8 +18,8 @@ return {
 		end,
 	},
 	-- Ada
-	"TamaMcGlinn/nvim-lsp-gpr-selector",
-	"TamaMcGlinn/nvim-lspconfig-ada",
+	-- "TamaMcGlinn/nvim-lsp-gpr-selector",
+	-- "TamaMcGlinn/nvim-lspconfig-ada",
 	-- Rust
 	{
 		"mrcjkb/rustaceanvim",
