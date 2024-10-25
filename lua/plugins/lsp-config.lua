@@ -42,10 +42,10 @@ return {
 			local lspconfig = require("lspconfig")
 			lspconfig.lua_ls.setup({})
 
-			lspconfig.als.setup({
-				capabilities = capabilities,
-				on_init = require("gpr_selector").als_on_init,
-			})
+			-- lspconfig.als.setup({
+			-- 	capabilities = capabilities,
+			-- 	on_init = require("gpr_selector").als_on_init,
+			-- })
 		end,
 	},
 }
