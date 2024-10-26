@@ -7,6 +7,7 @@
   "mason-lspconfig.nvim": { "branch": "main", "commit": "7446f47b3dfb7df801f31a6f6783c2ad119a6935" },
   "mason.nvim": { "branch": "main", "commit": "e2f7f9044ec30067bc11800a9e266664b88cda22" },
   "mini.clue": { "branch": "main", "commit": "378285270242fa23b441a68655d4af6cba8ac4c0" },
+  "mini.jump2d": { "branch": "main", "commit": "b0963aa2ec80b4b1ed1c7f93d9c969bb3f4b65b6" },
   "modus-themes.nvim": { "branch": "master", "commit": "566af300a3dfdefa64cbe7a0b205ad5bfcb4c337" },
   "neo-tree.nvim": { "branch": "v3.x", "commit": "a77af2e764c5ed4038d27d1c463fa49cd4794e07" },
   "none-ls.nvim": { "branch": "main", "commit": "dcc8cd4efdcb29275681a3c95786a816330dbca6" },
