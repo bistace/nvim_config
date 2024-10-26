@@ -3,7 +3,6 @@ vim.cmd("set tabstop=4")
 vim.cmd("set softtabstop=4")
 vim.cmd("set shiftwidth=4")
 vim.g.mapleader = " "
-vim.cmd.colorscheme "brogrammer"
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.fn.matchadd('errorMsg', [[\s\+$]])
@@ -22,3 +21,5 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 require("lazy").setup("plugins")
+
+vim.cmd([[colorscheme modus]]) -- modus_operandi, modus_vivendi
