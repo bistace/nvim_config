@@ -20,6 +20,11 @@ return {
 	-- Ada
 	"TamaMcGlinn/nvim-lsp-gpr-selector",
 	"TamaMcGlinn/nvim-lspconfig-ada",
+    -- D
+    {
+        "Pure-D/serve-d",
+        lazy = false,
+    },
 	-- Rust
 	{
 		"mrcjkb/rustaceanvim",
@@ -41,12 +46,12 @@ return {
 
 			local lspconfig = require("lspconfig")
 
-			lspconfig.lua_ls.setup({})
-
 			lspconfig.als.setup({
 				capabilities = capabilities,
 				on_init = require("gpr_selector").als_on_init,
-			})
+            })
+			lspconfig.lua_ls.setup({})
+            lspconfig.serve_d.setup({})
 		end,
 	},
 }
