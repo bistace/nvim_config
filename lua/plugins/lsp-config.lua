@@ -80,7 +80,11 @@ return {
                 capabilities = capabilities,
             })
 
-            lspconfig.serve_d.setup({})
+            lspconfig.serve_d.setup({
+                dfmt = {
+                    braceStyle = "stroustrup",
+                },
+            })
         end,
     },
 }
