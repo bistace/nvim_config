@@ -6,7 +6,7 @@ return {
     -- Optional; default configuration will be used if setup isn't called.
     config = function()
         require("everforest").setup({
-            background = "soft",
+            -- background = "soft",
         })
         vim.opt.background = "light"
     end,
