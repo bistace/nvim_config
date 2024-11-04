@@ -17,20 +17,24 @@ return {
             })
         end,
     },
+
     -- Ada
     "TamaMcGlinn/nvim-lsp-gpr-selector",
     "TamaMcGlinn/nvim-lspconfig-ada",
+
     -- D
-    {
-        "Pure-D/serve-d",
-        lazy = false,
-    },
+    -- {
+    --     "Pure-D/serve-d",
+    --     lazy = false,
+    -- },
+
     -- Rust
     {
         "mrcjkb/rustaceanvim",
         version = "^5",
         lazy = false,
     },
+
     -- Global LSP config
     {
         "neovim/nvim-lspconfig",
@@ -80,11 +84,11 @@ return {
                 capabilities = capabilities,
             })
 
-            lspconfig.serve_d.setup({
-                dfmt = {
-                    braceStyle = "stroustrup",
-                },
-            })
+            -- lspconfig.serve_d.setup({
+            --     dfmt = {
+            --         braceStyle = "stroustrup",
+            --     },
+            -- })
         end,
     },
 }
