@@ -1,94 +1,90 @@
 return {
     {
-        "williamboman/mason.nvim",
-        lazy = false,
-        config = function()
-            require("mason").setup()
-        end,
+        'VonHeikemen/lsp-zero.nvim',
+        branch = 'v4.x',
+        lazy = true,
+        config = false,
     },
     {
-        "williamboman/mason-lspconfig.nvim",
+        'williamboman/mason.nvim',
         lazy = false,
+        opts = {},
+    },
+    {
+        'hrsh7th/nvim-cmp',
         config = function()
-            require("mason-lspconfig").setup({
+            local cmp = require('cmp')
+
+            cmp.setup({
+                sources = {
+                    { name = 'nvim_lsp' },
+                },
+                snippet = {
+                    expand = function(args)
+                        vim.snippet.expand(args.body)
+                    end,
+                },
+                mapping = cmp.mapping.preset.insert({
+                    ["<CR>"] = cmp.mapping.confirm({ select = true }),
+                }),
+            })
+        end
+    },
+    {
+        'neovim/nvim-lspconfig',
+        cmd = { 'LspInfo', 'LspInstall', 'LspStart' },
+        event = { 'BufReadPre', 'BufNewFile' },
+        dependencies = {
+            { 'hrsh7th/cmp-nvim-lsp' },
+            { 'williamboman/mason.nvim' },
+            { 'williamboman/mason-lspconfig.nvim' },
+        },
+        init = function()
+            -- Reserve a space in the gutter
+            vim.opt.signcolumn = 'yes'
+        end,
+        config = function()
+            local lsp_defaults = require('lspconfig').util.default_config
+
+            lsp_defaults.capabilities = vim.tbl_deep_extend(
+                'force',
+                lsp_defaults.capabilities,
+                require('cmp_nvim_lsp').default_capabilities()
+            )
+
+            -- LspAttach is where you enable features that only work
+            -- if there is a language server active in the file
+            vim.api.nvim_create_autocmd('LspAttach', {
+                desc = 'LSP actions',
+                callback = function(event)
+                    local opts = { buffer = event.buf }
+
+                    vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
+                    vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
+                    vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)
+                    vim.keymap.set('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>', opts)
+                    vim.keymap.set('n', 'go', '<cmd>lua vim.lsp.buf.type_definition()<cr>', opts)
+                    vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', opts)
+                    vim.keymap.set('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
+                    vim.keymap.set('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
+                    vim.keymap.set({ 'n', 'x' }, '<F3>', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
+                    vim.keymap.set('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
+                end,
+            })
+
+            require('mason-lspconfig').setup({
                 ensure_installed = {
+                    "bash_ls",
+                    "jedi_language_server",
                     "lua_ls",
+                    "rust_analyzer"
                 },
+                handlers = {
+                    function(server_name)
+                        require('lspconfig')[server_name].setup({})
+                    end,
+                }
             })
-        end,
-    },
-
-    -- Ada
-    "TamaMcGlinn/nvim-lsp-gpr-selector",
-    "TamaMcGlinn/nvim-lspconfig-ada",
-
-    -- D
-    -- {
-    --     "Pure-D/serve-d",
-    --     lazy = false,
-    -- },
-
-    -- Rust
-    {
-        "mrcjkb/rustaceanvim",
-        version = "^5",
-        lazy = false,
-    },
-
-    -- Global LSP config
-    {
-        "neovim/nvim-lspconfig",
-        lazy = false,
-        config = function()
-            vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
-            vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
-            vim.keymap.set("n", "gD", vim.lsp.buf.declaration, {})
-            vim.keymap.set("n", "gr", vim.lsp.buf.references, {})
-            vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
-
-            local capabilities = require("cmp_nvim_lsp").default_capabilities()
-
-            local lspconfig = require("lspconfig")
-
-            lspconfig.als.setup({
-                capabilities = capabilities,
-                on_init = require("gpr_selector").als_on_init,
-            })
-
-            lspconfig.lua_ls.setup({})
-
-            lspconfig.pylsp.setup({
-                settings = {
-                    pylsp = {
-                        plugins = {
-                            -- formatter options
-                            black = { enabled = true },
-                            autopep8 = { enabled = false },
-                            yapf = { enabled = false },
-                            -- linter options
-                            pylint = { enabled = true, executable = "pylint" },
-                            pyflakes = { enabled = false },
-                            pycodestyle = { enabled = false },
-                            -- type checker
-                            pylsp_mypy = { enabled = true },
-                            -- auto-completion options
-                            jedi_completion = { fuzzy = true },
-                            -- import sorting
-                            pyls_isort = { enabled = true },
-                        },
-                    },
-                },
-                flags = {
-                    debounce_text_changes = 200,
-                },
-                capabilities = capabilities,
-            })
-
-            -- lspconfig.serve_d.setup({
-            --     dfmt = {
-            --         braceStyle = "stroustrup",
-            --     },
-            -- })
-        end,
-    },
+        end
+    }
 }
