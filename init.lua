@@ -24,4 +24,5 @@ require("lazy").setup("plugins")
 
 -- vim.cmd([[colorscheme modus]]) -- modus_operandi, modus_vivendi
 -- vim.cmd([[colorscheme nope-g]])
-vim.cmd([[colorscheme everforest]])
+-- vim.cmd([[colorscheme everforest]])
+vim.cmd([[colorscheme cyberdream]])
