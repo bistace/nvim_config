@@ -22,8 +22,8 @@ end
 vim.opt.rtp:prepend(lazypath)
 require("lazy").setup("plugins")
 
--- vim.cmd([[colorscheme modus]]) -- modus_operandi, modus_vivendi
+ vim.cmd([[colorscheme modus]]) -- modus_operandi, modus_vivendi
 -- vim.cmd([[colorscheme nope-g]])
 -- vim.cmd([[colorscheme everforest]])
 -- vim.cmd([[colorscheme cyberdream]])
-vim.cmd([[colorscheme flexoki]])
+-- vim.cmd([[colorscheme flexoki]])
