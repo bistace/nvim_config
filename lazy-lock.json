@@ -7,6 +7,7 @@
   "flexoki": { "branch": "main", "commit": "ce114bebcd7e306267cc7fa3b222161567a1455d" },
   "lazy.nvim": { "branch": "main", "commit": "b1134ab82ee4279e31f7ddf7e34b2a99eb9b7bc9" },
   "lsp-zero.nvim": { "branch": "v4.x", "commit": "19a8b90340c6c522219c84f7befe784d657ab28e" },
+  "lualine.nvim": { "branch": "master", "commit": "2a5bae925481f999263d6f5ed8361baef8df4f83" },
   "mason-lspconfig.nvim": { "branch": "main", "commit": "4d0e5b49363cac187326998b96aa6a2884e0e89b" },
   "mason.nvim": { "branch": "main", "commit": "e2f7f9044ec30067bc11800a9e266664b88cda22" },
   "mini.clue": { "branch": "main", "commit": "bea794f5207d498467f4969c56616845f4616010" },
